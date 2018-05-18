@@ -37,6 +37,7 @@ return array(
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Common/Inflector'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Cocur\\Slugify\\' => array($vendorDir . '/cocur/slugify/src'),
+    'Auryn\\' => array($vendorDir . '/rdlowrey/auryn/lib'),
     'Acme\\' => array($baseDir . '/src'),
     '' => array($vendorDir . '/nesbot/carbon/src'),
 );

@@ -77,6 +77,7 @@ class ComposerStaticInitc6a7ba358d0386479b676673b960f163
         ),
         'A' => 
         array (
+            'Auryn\\' => 6,
             'Acme\\' => 5,
         ),
     );
@@ -207,6 +208,10 @@ class ComposerStaticInitc6a7ba358d0386479b676673b960f163
         'Cocur\\Slugify\\' => 
         array (
             0 => __DIR__ . '/..' . '/cocur/slugify/src',
+        ),
+        'Auryn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rdlowrey/auryn/lib',
         ),
         'Acme\\' => 
         array (

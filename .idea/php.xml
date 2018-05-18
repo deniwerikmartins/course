@@ -64,6 +64,7 @@
       <path value="$PROJECT_DIR$/vendor/illuminate/database" />
       <path value="$PROJECT_DIR$/vendor/illuminate/container" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/rdlowrey/auryn" />
     </include_path>
   </component>
   <component name="PhpUnit">
