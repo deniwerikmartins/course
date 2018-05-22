@@ -49,7 +49,7 @@ class ValidatorTest extends \PHPUnit\Framework\TestCase{
             ->getMock();
 
         $this->blade = $this->getMockBuilder("duncan3dc\Laravel\BladeInstance")
-            ->setConstructorArgs(['abc123'],['abc'])
+            ->setConstructorArgs(['abc123', 'abc'])
             ->getMock();
 
         $this->response = $this->getMockBuilder('Acme\Http\Response')
@@ -122,18 +122,70 @@ class ValidatorTest extends \PHPUnit\Framework\TestCase{
 
     public function testCheckForEqualToWithValidData(){
 
-        // all methods are stubs, all methods return null, all methos can be overriden
+        // all methods are stubs, all methods return null, all methods can be overridden
         $req = $this->getMockBuilder("Acme\Http\Request")
             ->getMock();
+        $req->expects($this->at(0))
+            ->method('input')
+            ->will($this->returnValue('jack'));
+        $req->expects($this->at(1))
+            ->method('input')
+            ->will($this->returnValue('jack'));
+
+        $validator = new Validator($req,$this->response);
+        $errors = $validator->check(["my_field"=>"equalTo:another_field"]);
+        $this->assertCount(0,$errors);
     }
 
     public function testCheckForEqualToWithInvalidData(){
+        // all methods are stubs, all methods return null, all methods can be overridden
+        $req = $this->getMockBuilder("Acme\Http\Request")
+            ->getMock();
+        $req->expects($this->at(0))
+            ->method('input')
+            ->will($this->returnValue('jack'));
+        $req->expects($this->at(1))
+            ->method('input')
+            ->will($this->returnValue('jill'));
 
+        $validator = new Validator($req,$this->response);
+        $errors = $validator->check(["my_field"=>"equalTo:another_field"]);
+        $this->assertCount(1,$errors);
     }
+
+    public function testCheckForUniqueValidData(){
+        $validator = $this->getMockBuilder("Acme\Validation\Validator")
+            ->setConstructorArgs([$this->request, $this->response])
+            ->setMethods(["getRows"])
+            ->getMock();
+
+        $validator->method("getRows")
+            ->willReturn([]);
+
+        $erros = $validator->check(["my_field" => "unique:user"]);
+        $this->assertCount(0,$erros);
+    }
+
+    public function testCheckForUniqueInvalidData(){
+        $validator = $this->getMockBuilder("Acme\Validation\Validator")
+            ->setConstructorArgs([$this->request, $this->response])
+            ->setMethods(["getRows"])
+            ->getMock();
+
+        $validator->method("getRows")
+            ->willReturn(["a"]);
+
+        $erros = $validator->check(["my_field" => "unique:user"]);
+        $this->assertCount(1,$erros);
+    }
+
+
+
 
 
 
     /*
+
 
 
 public function testValidateWithInvalidData(){
